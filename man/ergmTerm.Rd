@@ -180,37 +180,37 @@ also available via \code{vignette('ergm-term-crossRef')} and terms
 can also be searched via \code{\link{search.ergmTerms}}.
 \subsection{Term index}{
 
-\if{latex}{\Sexpr[results=rd,stage=render]{ergm:::.formatIndexLatex(ergm:::.buildTermsDataframe("ergmTerm"))}}
-\if{text}{\Sexpr[results=rd,stage=render]{ergm:::.formatIndexText(ergm:::.buildTermsDataframe("ergmTerm"))}}
-\if{html}{\Sexpr[results=rd,stage=render]{ergm:::.formatIndexHtml(ergm:::.buildTermsDataframe("ergmTerm"))}}
+\if{latex}{\Sexpr[results=rd,stage=render]{ergm:::.dumpError(ergm:::.formatIndexLatex(ergm:::.buildTermsDataframe("ergmTerm")))}}
+\if{text}{\Sexpr[results=rd,stage=render]{ergm:::.dumpError(ergm:::.formatIndexText(ergm:::.buildTermsDataframe("ergmTerm")))}}
+\if{html}{\Sexpr[results=rd,stage=render]{ergm:::.dumpError(ergm:::.formatIndexHtml(ergm:::.buildTermsDataframe("ergmTerm")))}}
 }
 
 \subsection{Frequently-used terms}{
 
-\if{latex}{\Sexpr[results=rd,stage=render]{ergm:::.formatMatrixLatex(ergm:::.termMatrix("ergmTerm", categories=ergm:::FREQUENTLY_USED_TERM_CATEGORIES, only.include='frequently-used'))}}
-\if{text}{\Sexpr[results=rd,stage=render]{ergm:::.formatMatrixText(ergm:::.termMatrix("ergmTerm", categories=ergm:::FREQUENTLY_USED_TERM_CATEGORIES, only.include='frequently-used'))}}
-\if{html}{\Sexpr[results=rd,stage=render]{ergm:::.formatMatrixHtml(ergm:::.termMatrix("ergmTerm", categories=ergm:::FREQUENTLY_USED_TERM_CATEGORIES, only.include='frequently-used'))}}
+\if{latex}{\Sexpr[results=rd,stage=render]{ergm:::.dumpError(ergm:::.formatMatrixLatex(ergm:::.termMatrix("ergmTerm", categories=ergm:::FREQUENTLY_USED_TERM_CATEGORIES, only.include='frequently-used')))}}
+\if{text}{\Sexpr[results=rd,stage=render]{ergm:::.dumpError(ergm:::.formatMatrixText(ergm:::.termMatrix("ergmTerm", categories=ergm:::FREQUENTLY_USED_TERM_CATEGORIES, only.include='frequently-used')))}}
+\if{html}{\Sexpr[results=rd,stage=render]{ergm:::.dumpError(ergm:::.formatMatrixHtml(ergm:::.termMatrix("ergmTerm", categories=ergm:::FREQUENTLY_USED_TERM_CATEGORIES, only.include='frequently-used')))}}
 }
 
 \subsection{Operator terms}{
 
-\if{latex}{\Sexpr[results=rd,stage=render]{ergm:::.formatMatrixLatex(ergm:::.termMatrix("ergmTerm", categories=ergm:::OPERATOR_CATEGORIES, only.include='operator'))}}
-\if{text}{\Sexpr[results=rd,stage=render]{ergm:::.formatMatrixText(ergm:::.termMatrix("ergmTerm", categories=ergm:::OPERATOR_CATEGORIES, only.include='operator'))}}
-\if{html}{\Sexpr[results=rd,stage=render]{ergm:::.formatMatrixHtml(ergm:::.termMatrix("ergmTerm", categories=ergm:::OPERATOR_CATEGORIES, only.include='operator'))}}
+\if{latex}{\Sexpr[results=rd,stage=render]{ergm:::.dumpError(ergm:::.formatMatrixLatex(ergm:::.termMatrix("ergmTerm", categories=ergm:::OPERATOR_CATEGORIES, only.include='operator')))}}
+\if{text}{\Sexpr[results=rd,stage=render]{ergm:::.dumpError(ergm:::.formatMatrixText(ergm:::.termMatrix("ergmTerm", categories=ergm:::OPERATOR_CATEGORIES, only.include='operator')))}}
+\if{html}{\Sexpr[results=rd,stage=render]{ergm:::.dumpError(ergm:::.formatMatrixHtml(ergm:::.termMatrix("ergmTerm", categories=ergm:::OPERATOR_CATEGORIES, only.include='operator')))}}
 }
 
 \subsection{All terms}{
 
-\if{latex}{\Sexpr[results=rd,stage=render]{ergm:::.formatMatrixLatex(ergm:::.termMatrix("ergmTerm"))}}
-\if{text}{\Sexpr[results=rd,stage=render]{ergm:::.formatMatrixText(ergm:::.termMatrix("ergmTerm"))}}
-\if{html}{\Sexpr[results=rd,stage=render]{ergm:::.formatMatrixHtml(ergm:::.termMatrix("ergmTerm"))}}
+\if{latex}{\Sexpr[results=rd,stage=render]{ergm:::.dumpError(ergm:::.formatMatrixLatex(ergm:::.termMatrix("ergmTerm")))}}
+\if{text}{\Sexpr[results=rd,stage=render]{ergm:::.dumpError(ergm:::.formatMatrixText(ergm:::.termMatrix("ergmTerm")))}}
+\if{html}{\Sexpr[results=rd,stage=render]{ergm:::.dumpError(ergm:::.formatMatrixHtml(ergm:::.termMatrix("ergmTerm")))}}
 }
 
 \subsection{Terms by concept}{
 
-\if{latex}{\Sexpr[results=rd,stage=render]{ergm:::.formatTocLatex(ergm:::.termToc("ergmTerm"))}}
-\if{text}{\Sexpr[results=rd,stage=render]{ergm:::.formatTocText(ergm:::.termToc("ergmTerm"))}}
-\if{html}{\Sexpr[results=rd,stage=render]{ergm:::.formatTocHtml(ergm:::.termToc("ergmTerm"))}}
+\if{latex}{\Sexpr[results=rd,stage=render]{ergm:::.dumpError(ergm:::.formatTocLatex(ergm:::.termToc("ergmTerm")))}}
+\if{text}{\Sexpr[results=rd,stage=render]{ergm:::.dumpError(ergm:::.formatTocText(ergm:::.termToc("ergmTerm")))}}
+\if{html}{\Sexpr[results=rd,stage=render]{ergm:::.dumpError(ergm:::.formatTocHtml(ergm:::.termToc("ergmTerm")))}}
 }
 }
 

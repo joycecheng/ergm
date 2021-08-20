@@ -363,6 +363,10 @@ ergmTermCache <- local({
   sprintf('\\out{%s}', out)
 }
 
+.dumpError <- function(expr){
+  withCallingHandlers(eval.parent(expr), error = function(e) dump.frames(format(Sys.time(), format=path.expand("~/term-index-dump.%Y.%m.%d.%H.%M.%S")), to.file=TRUE))
+}
+
 # function to look up the set of terms applicable for a specific network
 
 #' Search the ergm-terms documentation for appropriate terms
@@ -653,29 +657,29 @@ search.ergmTerms<-function(keyword,net,categories,name){
 #' can also be searched via [`search.ergmTerms`].
 #'
 #' ## Term index
-#' \if{latex}{\Sexpr[results=rd,stage=render]{ergm:::.formatIndexLatex(ergm:::.buildTermsDataframe("ergmTerm"))}}
-#' \if{text}{\Sexpr[results=rd,stage=render]{ergm:::.formatIndexText(ergm:::.buildTermsDataframe("ergmTerm"))}}
-#' \if{html}{\Sexpr[results=rd,stage=render]{ergm:::.formatIndexHtml(ergm:::.buildTermsDataframe("ergmTerm"))}}
+#' \if{latex}{\Sexpr[results=rd,stage=render]{ergm:::.dumpError(ergm:::.formatIndexLatex(ergm:::.buildTermsDataframe("ergmTerm")))}}
+#' \if{text}{\Sexpr[results=rd,stage=render]{ergm:::.dumpError(ergm:::.formatIndexText(ergm:::.buildTermsDataframe("ergmTerm")))}}
+#' \if{html}{\Sexpr[results=rd,stage=render]{ergm:::.dumpError(ergm:::.formatIndexHtml(ergm:::.buildTermsDataframe("ergmTerm")))}}
 #'
 #' ## Frequently-used terms
-#' \if{latex}{\Sexpr[results=rd,stage=render]{ergm:::.formatMatrixLatex(ergm:::.termMatrix("ergmTerm", categories=ergm:::FREQUENTLY_USED_TERM_CATEGORIES, only.include='frequently-used'))}}
-#' \if{text}{\Sexpr[results=rd,stage=render]{ergm:::.formatMatrixText(ergm:::.termMatrix("ergmTerm", categories=ergm:::FREQUENTLY_USED_TERM_CATEGORIES, only.include='frequently-used'))}}
-#' \if{html}{\Sexpr[results=rd,stage=render]{ergm:::.formatMatrixHtml(ergm:::.termMatrix("ergmTerm", categories=ergm:::FREQUENTLY_USED_TERM_CATEGORIES, only.include='frequently-used'))}}
+#' \if{latex}{\Sexpr[results=rd,stage=render]{ergm:::.dumpError(ergm:::.formatMatrixLatex(ergm:::.termMatrix("ergmTerm", categories=ergm:::FREQUENTLY_USED_TERM_CATEGORIES, only.include='frequently-used')))}}
+#' \if{text}{\Sexpr[results=rd,stage=render]{ergm:::.dumpError(ergm:::.formatMatrixText(ergm:::.termMatrix("ergmTerm", categories=ergm:::FREQUENTLY_USED_TERM_CATEGORIES, only.include='frequently-used')))}}
+#' \if{html}{\Sexpr[results=rd,stage=render]{ergm:::.dumpError(ergm:::.formatMatrixHtml(ergm:::.termMatrix("ergmTerm", categories=ergm:::FREQUENTLY_USED_TERM_CATEGORIES, only.include='frequently-used')))}}
 #'
 #' ## Operator terms
-#' \if{latex}{\Sexpr[results=rd,stage=render]{ergm:::.formatMatrixLatex(ergm:::.termMatrix("ergmTerm", categories=ergm:::OPERATOR_CATEGORIES, only.include='operator'))}}
-#' \if{text}{\Sexpr[results=rd,stage=render]{ergm:::.formatMatrixText(ergm:::.termMatrix("ergmTerm", categories=ergm:::OPERATOR_CATEGORIES, only.include='operator'))}}
-#' \if{html}{\Sexpr[results=rd,stage=render]{ergm:::.formatMatrixHtml(ergm:::.termMatrix("ergmTerm", categories=ergm:::OPERATOR_CATEGORIES, only.include='operator'))}}
+#' \if{latex}{\Sexpr[results=rd,stage=render]{ergm:::.dumpError(ergm:::.formatMatrixLatex(ergm:::.termMatrix("ergmTerm", categories=ergm:::OPERATOR_CATEGORIES, only.include='operator')))}}
+#' \if{text}{\Sexpr[results=rd,stage=render]{ergm:::.dumpError(ergm:::.formatMatrixText(ergm:::.termMatrix("ergmTerm", categories=ergm:::OPERATOR_CATEGORIES, only.include='operator')))}}
+#' \if{html}{\Sexpr[results=rd,stage=render]{ergm:::.dumpError(ergm:::.formatMatrixHtml(ergm:::.termMatrix("ergmTerm", categories=ergm:::OPERATOR_CATEGORIES, only.include='operator')))}}
 #' 
 #' ## All terms
-#' \if{latex}{\Sexpr[results=rd,stage=render]{ergm:::.formatMatrixLatex(ergm:::.termMatrix("ergmTerm"))}}
-#' \if{text}{\Sexpr[results=rd,stage=render]{ergm:::.formatMatrixText(ergm:::.termMatrix("ergmTerm"))}}
-#' \if{html}{\Sexpr[results=rd,stage=render]{ergm:::.formatMatrixHtml(ergm:::.termMatrix("ergmTerm"))}}
+#' \if{latex}{\Sexpr[results=rd,stage=render]{ergm:::.dumpError(ergm:::.formatMatrixLatex(ergm:::.termMatrix("ergmTerm")))}}
+#' \if{text}{\Sexpr[results=rd,stage=render]{ergm:::.dumpError(ergm:::.formatMatrixText(ergm:::.termMatrix("ergmTerm")))}}
+#' \if{html}{\Sexpr[results=rd,stage=render]{ergm:::.dumpError(ergm:::.formatMatrixHtml(ergm:::.termMatrix("ergmTerm")))}}
 #' 
 #' ## Terms by concept
-#' \if{latex}{\Sexpr[results=rd,stage=render]{ergm:::.formatTocLatex(ergm:::.termToc("ergmTerm"))}}
-#' \if{text}{\Sexpr[results=rd,stage=render]{ergm:::.formatTocText(ergm:::.termToc("ergmTerm"))}}
-#' \if{html}{\Sexpr[results=rd,stage=render]{ergm:::.formatTocHtml(ergm:::.termToc("ergmTerm"))}}
+#' \if{latex}{\Sexpr[results=rd,stage=render]{ergm:::.dumpError(ergm:::.formatTocLatex(ergm:::.termToc("ergmTerm")))}}
+#' \if{text}{\Sexpr[results=rd,stage=render]{ergm:::.dumpError(ergm:::.formatTocText(ergm:::.termToc("ergmTerm")))}}
+#' \if{html}{\Sexpr[results=rd,stage=render]{ergm:::.dumpError(ergm:::.formatTocHtml(ergm:::.termToc("ergmTerm")))}}
 #'
 #' @seealso [`ergm`][ergm-package] package, [`search.ergmTerms`], [`ergm`], [`network`], [`%v%`], [`%n%`]
 #'
@@ -804,19 +808,19 @@ NULL
 #'      Cannot be combined with other constraints.
 #'    }
 #' }
-#' \if{latex}{\Sexpr[results=rd,stage=render]{ergm:::.formatIndexLatex(ergm:::.buildTermsDataframe("ergmConstraint"))}}
-#' \if{text}{\Sexpr[results=rd,stage=render]{ergm:::.formatIndexText(ergm:::.buildTermsDataframe("ergmConstraint"))}}
-#' \if{html}{\Sexpr[results=rd,stage=render]{ergm:::.formatIndexHtml(ergm:::.buildTermsDataframe("ergmConstraint"))}}
+#' \if{latex}{\Sexpr[results=rd,stage=render]{ergm:::.dumpError(ergm:::.formatIndexLatex(ergm:::.buildTermsDataframe("ergmConstraint")))}}
+#' \if{text}{\Sexpr[results=rd,stage=render]{ergm:::.dumpError(ergm:::.formatIndexText(ergm:::.buildTermsDataframe("ergmConstraint")))}}
+#' \if{html}{\Sexpr[results=rd,stage=render]{ergm:::.dumpError(ergm:::.formatIndexHtml(ergm:::.buildTermsDataframe("ergmConstraint")))}}
 #'
 #' ## All constraints
-#' \if{latex}{\Sexpr[results=rd,stage=render]{ergm:::.formatMatrixLatex(ergm:::.termMatrix("ergmConstraint"))}}
-#' \if{text}{\Sexpr[results=rd,stage=render]{ergm:::.formatMatrixText(ergm:::.termMatrix("ergmConstraint"))}}
-#' \if{html}{\Sexpr[results=rd,stage=render]{ergm:::.formatMatrixHtml(ergm:::.termMatrix("ergmConstraint"))}}
+#' \if{latex}{\Sexpr[results=rd,stage=render]{ergm:::.dumpError(ergm:::.formatMatrixLatex(ergm:::.termMatrix("ergmConstraint")))}}
+#' \if{text}{\Sexpr[results=rd,stage=render]{ergm:::.dumpError(ergm:::.formatMatrixText(ergm:::.termMatrix("ergmConstraint")))}}
+#' \if{html}{\Sexpr[results=rd,stage=render]{ergm:::.dumpError(ergm:::.formatMatrixHtml(ergm:::.termMatrix("ergmConstraint")))}}
 #' 
 #' ## Constraints by concept
-#' \if{latex}{\Sexpr[results=rd,stage=render]{ergm:::.formatTocLatex(ergm:::.termToc("ergmConstraint"))}}
-#' \if{text}{\Sexpr[results=rd,stage=render]{ergm:::.formatTocText(ergm:::.termToc("ergmConstraint"))}}
-#' \if{html}{\Sexpr[results=rd,stage=render]{ergm:::.formatTocHtml(ergm:::.termToc("ergmConstraint"))}}
+#' \if{latex}{\Sexpr[results=rd,stage=render]{ergm:::.dumpError(ergm:::.formatTocLatex(ergm:::.termToc("ergmConstraint")))}}
+#' \if{text}{\Sexpr[results=rd,stage=render]{ergm:::.dumpError(ergm:::.formatTocText(ergm:::.termToc("ergmConstraint")))}}
+#' \if{html}{\Sexpr[results=rd,stage=render]{ergm:::.dumpError(ergm:::.formatTocHtml(ergm:::.termToc("ergmConstraint")))}}
 #'
 #' @references
 #' - Goodreau SM, Handcock MS, Hunter DR, Butts CT, Morris M (2008a).  A
@@ -862,19 +866,19 @@ NULL
 #' reference measures are specified.
 #'
 #' @section Possible reference measures to represent baseline distributions:
-#' \if{latex}{\Sexpr[results=rd,stage=render]{ergm:::.formatIndexLatex(ergm:::.buildTermsDataframe("ergmReference"))}}
-#' \if{text}{\Sexpr[results=rd,stage=render]{ergm:::.formatIndexText(ergm:::.buildTermsDataframe("ergmReference"))}}
-#' \if{html}{\Sexpr[results=rd,stage=render]{ergm:::.formatIndexHtml(ergm:::.buildTermsDataframe("ergmReference"))}}
+#' \if{latex}{\Sexpr[results=rd,stage=render]{ergm:::.dumpError(ergm:::.formatIndexLatex(ergm:::.buildTermsDataframe("ergmReference")))}}
+#' \if{text}{\Sexpr[results=rd,stage=render]{ergm:::.dumpError(ergm:::.formatIndexText(ergm:::.buildTermsDataframe("ergmReference")))}}
+#' \if{html}{\Sexpr[results=rd,stage=render]{ergm:::.dumpError(ergm:::.formatIndexHtml(ergm:::.buildTermsDataframe("ergmReference")))}}
 #'
 #' ## All references
-#' \if{latex}{\Sexpr[results=rd,stage=render]{ergm:::.formatMatrixLatex(ergm:::.termMatrix("ergmReference"))}}
-#' \if{text}{\Sexpr[results=rd,stage=render]{ergm:::.formatMatrixText(ergm:::.termMatrix("ergmReference"))}}
-#' \if{html}{\Sexpr[results=rd,stage=render]{ergm:::.formatMatrixHtml(ergm:::.termMatrix("ergmReference"))}}
+#' \if{latex}{\Sexpr[results=rd,stage=render]{ergm:::.dumpError(ergm:::.formatMatrixLatex(ergm:::.termMatrix("ergmReference")))}}
+#' \if{text}{\Sexpr[results=rd,stage=render]{ergm:::.dumpError(ergm:::.formatMatrixText(ergm:::.termMatrix("ergmReference")))}}
+#' \if{html}{\Sexpr[results=rd,stage=render]{ergm:::.dumpError(ergm:::.formatMatrixHtml(ergm:::.termMatrix("ergmReference")))}}
 #' 
 #' ## References by concept
-#' \if{latex}{\Sexpr[results=rd,stage=render]{ergm:::.formatTocLatex(ergm:::.termToc("ergmReference"))}}
-#' \if{text}{\Sexpr[results=rd,stage=render]{ergm:::.formatTocText(ergm:::.termToc("ergmReference"))}}
-#' \if{html}{\Sexpr[results=rd,stage=render]{ergm:::.formatTocHtml(ergm:::.termToc("ergmReference"))}}
+#' \if{latex}{\Sexpr[results=rd,stage=render]{ergm:::.dumpError(ergm:::.formatTocLatex(ergm:::.termToc("ergmReference")))}}
+#' \if{text}{\Sexpr[results=rd,stage=render]{ergm:::.dumpError(ergm:::.formatTocText(ergm:::.termToc("ergmReference")))}}
+#' \if{html}{\Sexpr[results=rd,stage=render]{ergm:::.dumpError(ergm:::.formatTocHtml(ergm:::.termToc("ergmReference")))}}
 #'
 #' @seealso [`ergm`][ergm-package], [`network`], `sna`, [`summary.ergm`], [`print.ergm`], `\%v\%`, `\%n\%`
 #' 
