@@ -13,9 +13,9 @@ This collects all defined keywords defined for the ERGM and derived packages
 }
 \section{Possible keywords defined by the ERGM and derived packages}{
 
-\if{latex}{\Sexpr[results=rd,stage=render]{ergm:::.formatKeywordsLatex(ergm_keyword())}}
-\if{text}{\Sexpr[results=rd,stage=render]{ergm:::.formatKeywordsText(ergm_keyword())}}
-\if{html}{\Sexpr[results=rd,stage=render]{ergm:::.formatKeywordsHtml(ergm_keyword())}}
+\if{latex}{\Sexpr[results=rd,stage=render]{ergm:::.formatKeywordsLatex(ergm::ergm_keyword())}}
+\if{text}{\Sexpr[results=rd,stage=render]{ergm:::.formatKeywordsText(ergm::ergm_keyword())}}
+\if{html}{\Sexpr[results=rd,stage=render]{ergm:::.formatKeywordsHtml(ergm::ergm_keyword())}}
 }
 
 \keyword{models}

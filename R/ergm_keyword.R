@@ -8,8 +8,8 @@
 #  Copyright 2003-2021 Statnet Commons
 ################################################################################
 
-DISPLAY_TEXT_INDEX_MAX_WIDTHS <- list('name'=20, 'short'=8, 'description'=30, 'popular'=8, 'package'=8)
-DISPLAY_LATEX_INDEX_PCT_WIDTHS <- c(0.15, 0.10, 0.6, 0.05, 0.10)
+DISPLAY_TEXT_KW_INDEX_MAX_WIDTHS <- list('name'=20, 'short'=8, 'description'=30, 'popular'=8, 'package'=8)
+DISPLAY_LATEX_KW_INDEX_PCT_WIDTHS <- c(0.15, 0.10, 0.6, 0.05, 0.10)
 
 #' Dynamic ERGM keyword registry
 #'
@@ -65,23 +65,23 @@ ergm_keyword <- local({
   }
 
   df[, 'popular'] = ifelse(df[, 'popular'], 'o', '')
-  out <- sprintf('|%s|\n', paste(stringr::str_pad(names(DISPLAY_TEXT_INDEX_MAX_WIDTHS), DISPLAY_TEXT_INDEX_MAX_WIDTHS, side='right', pad='-'), collapse='|'))
-  empty_row <- sprintf('|%s|\n', paste(stringr::str_pad(rep('', length(DISPLAY_TEXT_INDEX_MAX_WIDTHS)), DISPLAY_TEXT_INDEX_MAX_WIDTHS), collapse='|'))
+  out <- sprintf('|%s|\n', paste(stringr::str_pad(names(DISPLAY_TEXT_KW_INDEX_MAX_WIDTHS), DISPLAY_TEXT_KW_INDEX_MAX_WIDTHS, side='right', pad='-'), collapse='|'))
+  empty_row <- sprintf('|%s|\n', paste(stringr::str_pad(rep('', length(DISPLAY_TEXT_KW_INDEX_MAX_WIDTHS)), DISPLAY_TEXT_KW_INDEX_MAX_WIDTHS), collapse='|'))
 
   r <- list()
   for (i in 1:dim(df)[1]) {
     print(df[i, ])
-    for (c in names(DISPLAY_TEXT_INDEX_MAX_WIDTHS)) {
-      r[[c]] <- if (df[i, c] != '') line_wrap(df[i, c], DISPLAY_TEXT_INDEX_MAX_WIDTHS[[c]]) else character(0)
+    for (c in names(DISPLAY_TEXT_KW_INDEX_MAX_WIDTHS)) {
+      r[[c]] <- if (df[i, c] != '') line_wrap(df[i, c], DISPLAY_TEXT_KW_INDEX_MAX_WIDTHS[[c]]) else character(0)
     }
 
     max_lines <- max(sapply(r, length))
-    for (c in names(DISPLAY_TEXT_INDEX_MAX_WIDTHS)) {
+    for (c in names(DISPLAY_TEXT_KW_INDEX_MAX_WIDTHS)) {
       r[[c]] <- pad_lines(r[[c]], max_lines)
     }
 
     for (j in 1:max_lines) {
-      out <- sprintf('%s|%s|\n', out, paste(stringr::str_pad(sapply(r, "[[", j), DISPLAY_TEXT_INDEX_MAX_WIDTHS, side='right'), collapse='|'))
+      out <- sprintf('%s|%s|\n', out, paste(stringr::str_pad(sapply(r, "[[", j), DISPLAY_TEXT_KW_INDEX_MAX_WIDTHS, side='right'), collapse='|'))
     }
     out <- paste(out, empty_row, sep='')
   }
@@ -91,7 +91,7 @@ ergm_keyword <- local({
 
 .formatKeywordsLatex <- function(df) {
   sprintf('\\out{%s}',
-    knitr::kable(df, 'latex', escape=FALSE, longtable=TRUE, align=sprintf('p{%.1f\\textwidth}', DISPLAY_LATEX_INDEX_PCT_WIDTHS), vline="") %>%
+    knitr::kable(df, 'latex', escape=FALSE, longtable=TRUE, align=sprintf('p{%.1f\\textwidth}', DISPLAY_LATEX_KW_INDEX_PCT_WIDTHS), vline="") %>%
       gsub(' *\n *', ' ', .) %>%
       gsub('\\\\ ', '\\\\\\\\ ', .))
 }
@@ -109,9 +109,9 @@ ergm_keyword <- local({
 #' @description This collects all defined keywords defined for the ERGM and derived packages
 #'
 #' @section Possible keywords defined by the ERGM and derived packages:
-#' \if{latex}{\Sexpr[results=rd,stage=render]{ergm:::.formatKeywordsLatex(ergm_keyword())}}
-#' \if{text}{\Sexpr[results=rd,stage=render]{ergm:::.formatKeywordsText(ergm_keyword())}}
-#' \if{html}{\Sexpr[results=rd,stage=render]{ergm:::.formatKeywordsHtml(ergm_keyword())}}
+#' \if{latex}{\Sexpr[results=rd,stage=render]{ergm:::.formatKeywordsLatex(ergm::ergm_keyword())}}
+#' \if{text}{\Sexpr[results=rd,stage=render]{ergm:::.formatKeywordsText(ergm::ergm_keyword())}}
+#' \if{html}{\Sexpr[results=rd,stage=render]{ergm:::.formatKeywordsHtml(ergm::ergm_keyword())}}
 #'
 #' @keywords models
 NULL
