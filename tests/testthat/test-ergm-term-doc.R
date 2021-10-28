@@ -37,7 +37,7 @@ test_that("test search ergm term", {
   # crude checks for search.ergmTerms are in the search.ergmTerms man page
 
   # expect to find at least eight terms mentioning triangles
-  expect_equal(length(search.ergmTerms('triangle')), 9)
+  expect_equal(length(search.ergmTerms('triangle')), 13)
 
   # search using a bipartite net as a template
   myNet<-network.initialize(5,bipartite=3,directed=FALSE)
@@ -57,7 +57,7 @@ test_that("test search ergm term", {
 })
 
 test_that("test search ergm reference", {
-  expect_equal(length(search.ergmReferences('dyads')), 4)
+  expect_equal(length(search.ergmReferences('dyad')), 4)
 
   expect_equal(length(search.ergmReferences(keywords = 'binary')), 1)
   expect_equal(length(search.ergmReferences(keywords = 'binary', packages='ergm.count')), 0)
@@ -79,7 +79,7 @@ test_that("test search ergm constraint", {
 })
 
 test_that("test search ergm proposal", {
-  expect_equal(length(search.ergmProposals('dyad')), 3)
+  expect_equal(length(search.ergmProposals('bipartite')), 2)
 
   expect_equal(length(search.ergmProposals(constraints='.dyads')), 3)
 

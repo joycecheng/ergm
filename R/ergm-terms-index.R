@@ -59,6 +59,7 @@ DISPLAY_LATEX_TOC_PCT_WIDTHS <- function(n_concepts) c(2.4, rep(.7, n_concepts))
       usages=usages,
       title=doc[tags == '\\title'] %>% unlist %>% paste(collapse='') %>% trimws(),
       description=doc[tags == '\\details'] %>% unlist %>% paste(collapse='') %>% trimws(),
+      details=doc %>% unlist %>% paste(collapse='') %>% trimws(),
       concepts=if (!is.null(concepts)) unique(concepts) else c(),
       keywords=c()))
   } else {
@@ -87,7 +88,8 @@ DISPLAY_LATEX_TOC_PCT_WIDTHS <- function(n_concepts) c(2.4, rep(.7, n_concepts))
       alias=doc[tags == '\\alias'] %>% unlist,
       package=pkg_name,
       title=doc[tags == '\\title'] %>% unlist %>% paste(collapse='') %>% trimws(),
-      description=doc[tags == '\\details'] %>% unlist %>% paste(collapse='') %>% trimws(),
+      description=doc[tags == '\\description'] %>% unlist %>% paste(collapse='') %>% trimws(),
+      details=doc %>% unlist %>% paste(collapse='') %>% trimws(),
       rules=proposals))
   }
 }
@@ -580,7 +582,7 @@ search.ergmTermType <-function(term.type, search.term, net, keywords, name, pack
     for (t in which(found)){
       term<-terms[[t]]
       # if we don't find the search.term in the text grep, mark it as false
-      if(length(grep(search.term,c(term$description, term$title),ignore.case=TRUE))==0){
+      if(length(grep(search.term,term$details,ignore.case=TRUE))==0){
         found[t]<-FALSE
       } 
     }
@@ -831,7 +833,7 @@ search.ergmProposals <- function(search.term, name, reference, constraints, pack
     for (t in which(found)) {
       term <-terms[[t]]
       # if we don't find the search.term in the text grep, mark it as false
-      if (length(grep(search.term,c(term$description, term$title), ignore.case=TRUE)) == 0) {
+      if (length(grep(search.term,term$details, ignore.case=TRUE)) == 0) {
         found[t]<-FALSE
       } 
     }

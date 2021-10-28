@@ -37,13 +37,13 @@ included in the term.
 }
 \examples{
 
-# find all of the terms that mention triangles
+# find all of the references that mention dyad
 search.ergmReferences('dyad')
 
 # search on multiple keywords
 search.ergmReferences(keywords=c('binary','discrete'))
 
-# print out the content for a specific term
+# print out the content for a specific reference
 search.ergmReferences(name='Bernoulli')
 
 # request the bipartite keyword in the ergm package
