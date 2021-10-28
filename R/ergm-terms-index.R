@@ -709,13 +709,13 @@ search.ergmTerms <- partial(search.ergmTermType, "ergmTerm")
 #' @seealso See also \code{\link{ergm.references}} for the complete documentation
 #' @examples
 #' 
-#' # find all of the terms that mention triangles
+#' # find all of the references that mention dyad
 #' search.ergmReferences('dyad')
 #' 
 #' # search on multiple keywords
 #' search.ergmReferences(keywords=c('binary','discrete'))
 #' 
-#' # print out the content for a specific term
+#' # print out the content for a specific reference
 #' search.ergmReferences(name='Bernoulli')
 #'
 #' # request the bipartite keyword in the ergm package
@@ -772,19 +772,21 @@ search.ergmConstraints <- function(search.term, keywords, name, packages)
 #' Search the ERGM Proposals
 #' 
 #' Searches through the \code{\link{ergm.proposals}} help page and prints out a
-#' list of terms appropriate for the specified network's structural
+#' list of proposals appropriate for the specified network's structural
 #' constraints, optionally restricting by additional keywords and search term
 #' matches.
 #' 
-#' Uses \code{\link{grep}} internally to match the search terms against the term
+#' Uses \code{\link{grep}} internally to match the search terms against the proposal 
 #' description, so \code{search.term} is currently matched as a single phrase.
 #' Keyword tags will only return a match if all of the specified tags are
-#' included in the term.
+#' included in the proposal 
 #' 
 #' @param search.term optional character search term to search for in the text of the
 #' term descriptions. Only matching terms will be returned. Matching is case
 #' insensitive.
-#' @param name optional character name of a specific term to return
+#' @param name optional character name of a specific proposal to return
+#' @param reference optional character to limit proposals to only those with a matching reference
+#' @param constraints optional character vector to limit proposals to only those with matching hard or soft constraints
 #' @param packages optional character vector indicating the subset of packages in which to search
 #' @return prints out the name and short description of matching terms, and
 #' invisibly returns them as a list.  If \code{name} is specified, prints out
@@ -802,14 +804,14 @@ search.ergmConstraints <- function(search.term, keywords, name, packages)
 #' search.ergmProposals(constraints='.dyads')
 #'
 #' # find all proposals with references
-#' search.ergmProposals(references='.dyads')
+#' search.ergmProposals(reference='Bernoulli')
 #'
 #' # request proposals that mention triangle in the ergm package
 #' search.ergmProposals('MH algorithm', packages='ergm')
 #' 
 #' @importFrom utils capture.output
 #' @export search.ergmProposals
-search.ergmProposals <- function(search.term, name, references, constraints, packages) {
+search.ergmProposals <- function(search.term, name, reference, constraints, packages) {
   proposals <- .buildProposalsList()
   
   terms <- ergmTermCache("ergmProposal")
@@ -836,10 +838,10 @@ search.ergmProposals <- function(search.term, name, references, constraints, pac
   }
 
   # optionally restrict by references
-  if (!missing(references)) {
+  if (!missing(reference)) {
     for (t in which(found)) {
       term <-terms[[t]]
-      if (!any(term$rules %>% map("Reference") %in% references)) {
+      if (reference %in% (term$rules %>% map("Reference"))) {
         found[t]<-FALSE
       } 
     }

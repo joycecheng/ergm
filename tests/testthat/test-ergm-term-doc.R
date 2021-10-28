@@ -45,10 +45,50 @@ test_that("test search ergm term", {
 
   expect_equal(length(search.ergmTerms(keywords = 'bipartite')), 38)
 
+  expect_gt(length(search.ergmTerms(name = 'b2factor')), 0)
+  expect_equal(length(search.ergmTerms(name = 'b3factor')), 0)
+
   expect_equal(length(search.ergmTerms(keywords = 'bipartite', packages='ergm')), 38)
 
   library(ergm.count)
   expect_equal(length(search.ergmTerms(keywords = 'valued')), 85)
   expect_equal(length(search.ergmTerms(keywords = 'valued', packages='ergm')), 83)
   expect_equal(length(search.ergmTerms(keywords = 'valued', packages=c('ergm', 'ergm.count'))), 85)
+})
+
+test_that("test search ergm reference", {
+  expect_equal(length(search.ergmReferences('dyads')), 4)
+
+  expect_equal(length(search.ergmReferences(keywords = 'binary')), 1)
+  expect_equal(length(search.ergmReferences(keywords = 'binary', packages='ergm.count')), 0)
+  expect_equal(length(search.ergmReferences(keywords = 'binary', packages='ergm')), 1)
+
+  expect_gt(length(search.ergmReferences(name = 'Bernoulli')), 0)
+  expect_equal(length(search.ergmReferences(name = 'Cernoulli')), 0)
+})
+
+test_that("test search ergm constraint", {
+  expect_equal(length(search.ergmConstraints('degree')), 10)
+
+  expect_equal(length(search.ergmConstraints(keywords = 'directed')), 17)
+  expect_equal(length(search.ergmConstraints(keywords = 'directed', packages='ergm.count')), 0)
+  expect_equal(length(search.ergmConstraints(keywords = 'directed', packages='ergm')), 17)
+
+  expect_gt(length(search.ergmConstraints(name = 'b1degrees')), 0)
+  expect_equal(length(search.ergmConstraints(name = 'b3degrees')), 0)
+})
+
+test_that("test search ergm proposal", {
+  expect_equal(length(search.ergmProposals('dyad')), 3)
+
+  expect_equal(length(search.ergmProposals(constraints='.dyads')), 3)
+
+  expect_equal(length(search.ergmProposals(reference='Bernoulli')), 7)
+
+  expect_equal(length(search.ergmProposals(reference='Bernoulli')), 7)
+  expect_equal(length(search.ergmProposals(reference='Bernoulli', packages='ergm.count')), 7)
+  expect_equal(length(search.ergmProposals(reference='Bernoulli', packages='ergm')), 7)
+
+  expect_gt(length(search.ergmProposals(name = 'randomtoggle')), 0)
+  expect_equal(length(search.ergmProposals(name = 'mandomtoggle')), 0)
 })
