@@ -62,9 +62,8 @@ InitErgmConstraint..attributes <- function(nw, arglist, ...){
 }
 
 #' @name .dyads-ergmConstraint
-#' @title TODO
-#' @description TODO
-#' @details TODO
+#' @title A meta-constraint indicating handling of arbitrary dyadic constraints
+#' @description This is a flag in the proposal table indicating that the proposal can enforce arbitrary combinations of dyadic constraints. It cannot be invoked directly by the user.
 #'
 #' @template ergmConstraint-general
 NULL
@@ -507,11 +506,11 @@ InitErgmConstraint.fixallbut<-function(nw, arglist,...){
   list(
     free_dyads = function(){
       if(is.network(free.dyads)) free.dyads <- as.edgelist(free.dyads)
-      fixed <- as.edgelist(free.dyads,
-                           n=nw%n%"n",
-                           directed=nw%n%"directed",
-                           bipartite=nw%n%"bipartite",
-                           loops=nw%n%"loops")
+      else free.dyads <- as.edgelist(free.dyads,
+                                     n=nw%n%"n",
+                                     directed=nw%n%"directed",
+                                     bipartite=nw%n%"bipartite",
+                                     loops=nw%n%"loops")
       as.rlebdm(free.dyads)
     },
     dependence = FALSE)

@@ -28,8 +28,8 @@ DISPLAY_LATEX_TOC_PCT_WIDTHS <- function(n_concepts) c(2.4, rep(.7, n_concepts))
 
   if (type != "ergmProposal") {
     concepts <- doc[tags == '\\concept'] %>% unlist
-    raw_usage <- doc[tags == '\\usage'] %>% 
-      unlist %>% 
+    raw_usage <- doc[tags == '\\usage'] %>%
+      unlist %>%
       paste(collapse="") %>%
       gsub("\n *# *"," ", .) %>%
       strsplit("\n") %>%
@@ -551,7 +551,7 @@ search.ergmTermType <-function(term.type, search.term, net, keywords, name, pack
       stop("the 'net' argument must be the network argument that applicable terms are to be searched for")
     }
   }
-  
+
   if(missing(keywords)){
     keywords<-character(0)
   }
@@ -577,7 +577,7 @@ search.ergmTermType <-function(term.type, search.term, net, keywords, name, pack
       found[t]<-any(term$name==name || term$link==name)
     }
   }
-  
+
   # restrict by keywords
   for (t in which(found)){
     term<-terms[[t]]
@@ -585,7 +585,7 @@ search.ergmTermType <-function(term.type, search.term, net, keywords, name, pack
     if(!all(keywords%in%term$concepts)){
       found[t]<-FALSE }
   }
-  
+
   # next (optionally) restrict by search.term matches
   if (!missing(search.term)){
     for (t in which(found)){
@@ -606,7 +606,7 @@ search.ergmTermType <-function(term.type, search.term, net, keywords, name, pack
       }
     }
   }
-  
+
   # if term name was specified, print out all the matching terms
   # otherwise,  loop over the remaining terms to format output as condensed
   output<-list()
@@ -740,36 +740,36 @@ search.ergmReferences <- function(search.term, keywords, name, packages)
 #' Search the ERGM Constraint
 #' 
 #' Searches through the \code{\link{ergm.constraints}} help page and prints out a
-#' list of terms appropriate for the specified network's structural
+#' list of constraints appropriate for the specified network's structural
 #' constraints, optionally restricting by additional keywords and search term
 #' matches.
 #' 
-#' Uses \code{\link{grep}} internally to match the search terms against the term
+#' Uses \code{\link{grep}} internally to match the search terms against the constraint 
 #' description, so \code{search.term} is currently matched as a single phrase.
 #' Keyword tags will only return a match if all of the specified tags are
-#' included in the term.
+#' included in the constraint 
 #' 
 #' @param search.term optional character search term to search for in the text of the
-#' term descriptions. Only matching terms will be returned. Matching is case
+#' constraint descriptions. Only matching constraints will be returned. Matching is case
 #' insensitive.
 #' @param keywords optional character vector of keyword tags to use to
 #' restrict the results (i.e. 'curved', 'triad-related')
-#' @param name optional character name of a specific term to return
+#' @param name optional character name of a specific constraint to return
 #' @param packages optional character vector indicating the subset of packages in which to search
-#' @return prints out the name and short description of matching terms, and
+#' @return prints out the name and short description of matching constraints, and
 #' invisibly returns them as a list.  If \code{name} is specified, prints out
-#' the full definition for the named term.
+#' the full definition for the named constraint. 
 #' @author skyebend@uw.edu
 #' @seealso See also \code{\link{ergm.constraints}} for the complete documentation
 #' @examples
 #' 
-#' # find all of the terms that mention triangles
+#' # find all of the constraint that mention triangles
 #' search.ergmConstraints('degree')
 #' 
 #' # search on multiple keywords
 #' search.ergmConstraints(keywords=c('directed','dyad-independent'))
 #' 
-#' # print out the content for a specific term
+#' # print out the content for a specific constraint 
 #' search.ergmConstraints(name='b1degrees')
 #'
 #' # request the bipartite keyword in the ergm package
