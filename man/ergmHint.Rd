@@ -52,7 +52,7 @@ be substituted in its place.
 
 The following hints are known to \CRANpkg{ergm} at this time:
 
-\if{latex}{\Sexpr[results=rd,stage=render]{ergm:::.formatIndexLatex(ergm:::.buildTermsDataframe("ergmHint"))}}
+\if{latex}{\Sexpr[results=rd,stage=render]{ergm:::.formatIndexLatex(ergm:::.buildTermsDataframe("ergmHint", packages='ergm'))}}
 \if{text}{\Sexpr[results=rd,stage=render]{ergm:::.formatIndexText(ergm:::.buildTermsDataframe("ergmHint"))}}
 \if{html}{\Sexpr[results=rd,stage=render]{ergm:::.formatIndexHtml(ergm:::.buildTermsDataframe("ergmHint"))}}
 }

@@ -22,7 +22,7 @@ the algorithm, and in other cases to constrain the sample space.
 
 \if{html}{\Sexpr[results=rd,stage=render]{ergm:::.formatProposalsHtml(ergm:::.buildProposalsList(), keepProposal=TRUE)}}
 \if{text}{\Sexpr[results=rd,stage=render]{ergm:::.formatProposalsText(ergm:::.buildProposalsList(), keepProposal=TRUE)}}
-\if{latex}{\Sexpr[results=rd,stage=render]{ergm:::.formatProposalsLatex(ergm:::.buildProposalsList(), keepProposal=TRUE)}}
+\if{latex}{\Sexpr[results=rd,stage=render]{ergm:::.formatProposalsLatex(ergm:::.buildProposalsList(), keepProposal=TRUE, packages='ergm')}}
 }
 
 \references{
